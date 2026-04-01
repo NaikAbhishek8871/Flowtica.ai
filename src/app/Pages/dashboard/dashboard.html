@@ -1,0 +1,110 @@
+<div class="container-fluid dashboard">
+
+  <!-- 🔝 HEADER -->
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-3">
+    <div>
+      <h3 class="fw-bold mb-1 title">Dashboard</h3>
+      <p class="subtitle mb-0">Overview of your automation system</p>
+    </div>
+
+    <div class="d-flex flex-wrap align-items-center gap-3">
+
+      <button class="btn btn-soft">
+        📸 Connect Instagram
+      </button>
+
+      <!-- ✅ UPDATED BUTTON -->
+      <button class="btn btn-soft">
+        🚀 Start Getting Leads
+      </button>
+
+      <button class="btn btn-glow">
+        ⚡ Create Automation
+      </button>
+
+    </div>
+  </div>
+
+  <!-- 🔢 KPI CARDS -->
+  <div class="row g-4 mb-4">
+
+    <div class="col-md-6 col-xl-4">
+      <div class="card-dark card-purple">
+        <p class="card-label">Total Leads</p>
+        <h2>{{ stats.totalLeads }}</h2>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xl-4">
+      <div class="card-dark card-blue">
+        <p class="card-label">DMs Sent</p>
+        <h2>{{ stats.dmsSent }}</h2>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xl-4">
+      <div class="card-dark card-yellow">
+        <p class="card-label">Active Automations</p>
+        <h2>{{ stats.activeAutomation }}</h2>
+      </div>
+    </div>
+
+    <!-- ❌ REMOVED Conversion Card -->
+
+  </div>
+
+  <!-- 📊 MAIN -->
+  <div class="row g-4">
+
+    <div class="col-lg-8">
+  <div class="card-dark">
+
+    <div class="d-flex justify-content-between ">
+      <div>
+        <h5 class="fw-bold">Lead Growth</h5>
+        <small class="text-muted">Audience expansion</small>
+      </div>
+      <select class="form-select form-select-sm filter" style="width: 120px;">
+        <option>Last 7 days</option>
+        <option>Last 30 days</option>
+      </select>
+    </div>
+
+    <!-- ✅ EMPTY STATE -->
+    <div *ngIf="!hasChartData()" class="empty-state">
+      <p>No data yet 📈</p>
+    </div>
+
+    <!-- ✅ CHART -->
+    <canvas *ngIf="hasChartData()" id="leadChart"></canvas>
+
+  </div>
+</div>
+
+<div class="col-lg-4">
+  <div class="card-dark">
+    <h5 class="fw-bold mb-3">Recent Activity</h5>
+
+    <!-- ✅ EMPTY STATE -->
+    <div *ngIf="recentActivities.length === 0" class="empty-state">
+      <p>No activity yet 👋</p>
+      <small>Create your first automation to start getting leads</small>
+    </div>
+
+    <!-- ✅ ACTIVITY LIST -->
+    <div *ngIf="recentActivities.length > 0">
+      <div *ngFor="let activity of recentActivities" class="activity-item">
+        <div class="dot"></div>
+        <div>
+          <div class="text">{{ activity.text }}</div>
+          <small>{{ activity.time }}</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  </div>
+
+</div>

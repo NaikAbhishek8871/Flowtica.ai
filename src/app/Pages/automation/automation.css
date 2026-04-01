@@ -1,0 +1,856 @@
+ /* ============================= */
+/* 🌍 AUTOMATION PAGE BASE */
+/* ============================= */
+
+.automation-page {
+  padding: 10px;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* ============================= */
+/* 🌑 DARK MODE */
+/* ============================= */
+
+body:not(.light-theme) .automation-page {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+/* ============================= */
+/* ☀️ LIGHT MODE */
+/* ============================= */
+
+body.light-theme .automation-page {
+  background: #f4f6fb;
+  color: #111827;
+}
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  font-weight: 700;
+}
+
+.sub-text {
+  font-size: 14px;
+}
+
+/* DARK */
+body:not(.light-theme) .sub-text {
+  color: #94a3b8;
+}
+
+/* LIGHT */
+body.light-theme .sub-text {
+  color: #6b7280;
+}
+
+/* ============================= */
+/* BUTTON */
+/* ============================= */
+
+.gradient-btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  margin-left: 10px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #7b5cff, #00d4ff);
+  transition: all 0.3s ease;
+}
+
+.gradient-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(123, 92, 255, 0.4);
+}
+
+/* ============================= */
+/* SEARCH */
+/* ============================= */
+
+.search-bar input {
+  width: 100%;
+  padding: 12px;
+  margin: 20px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* DARK */
+body:not(.light-theme) .search-bar input {
+  background: #020617;
+  color: #fff;
+}
+
+/* LIGHT */
+body.light-theme .search-bar input {
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+}
+
+/* ============================= */
+/* FILTER ROW */
+/* ============================= */
+
+.filter-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* DARK */
+body:not(.light-theme) .filter-box {
+  background: #0f172a;
+}
+
+/* LIGHT */
+body.light-theme .filter-box {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+/* TEXT */
+.filter-box span {
+  font-size: 14px;
+}
+
+/* DARK */
+body:not(.light-theme) .filter-box span {
+  color: #9ca3af;
+}
+
+/* LIGHT */
+body.light-theme .filter-box span {
+  color: #6b7280;
+}
+
+/* FILTER BUTTON */
+.filter-box button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+/* DARK */
+body:not(.light-theme) .filter-box button {
+  background: #1f2a44;
+  color: #fff;
+}
+
+/* LIGHT */
+body.light-theme .filter-box button {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+/* ACTIVE */
+.filter-box button.active {
+  background: #7b5cff !important;
+  color: #fff !important;
+}
+
+/* ============================= */
+/* AUTOMATION CARD */
+/* ============================= */
+
+.automation-card {
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+/* DARK */
+body:not(.light-theme) .automation-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* LIGHT */
+body.light-theme .automation-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+/* HOVER EFFECT */
+.automation-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* ============================= */
+/* CARD CONTENT */
+/* ============================= */
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+
+
+/* TAG */
+.tag {
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+/* DARK */
+body:not(.light-theme) .tag {
+  background: #1f2a44;
+}
+
+/* LIGHT */
+body.light-theme .tag {
+  background: #f3f4f6;
+}
+
+/* ============================= */
+/* ACTION BUTTONS */
+/* ============================= */
+
+.actions button {
+  margin-left: 10px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+/* DARK */
+body:not(.light-theme) .actions button {
+  background: #1f2a44;
+  color: #fff;
+}
+
+/* LIGHT */
+body.light-theme .actions button {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+/* DELETE */
+.delete {
+  background: #ef4444 !important;
+  color: #fff !important;
+}
+
+/* ============================= */
+/* MODAL */
+/* ============================= */
+
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  padding: 20px;
+  border-radius: 15px;
+  width: 400px;
+}
+
+/* DARK */
+body:not(.light-theme) .modal-box {
+  background: #0f172a;
+}
+
+/* LIGHT */
+body.light-theme .modal-box {
+  background: #ffffff;
+}
+
+/* INPUTS */
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+}
+
+/* DARK */
+body:not(.light-theme) .modal-box input,
+body:not(.light-theme) .modal-box select,
+body:not(.light-theme) .modal-box textarea {
+  background: #2c2e38;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* LIGHT */
+body.light-theme .modal-box input,
+body.light-theme .modal-box select,
+body.light-theme .modal-box textarea {
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+}
+
+/* ============================= */
+/* SUGGESTIONS */
+/* ============================= */
+
+.suggestions span {
+  margin: 5px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  transition: 0.3s;
+  background: linear-gradient(135deg, #7b5cff, #00d4ff);
+  color: #fff;
+}
+
+.suggestions span:hover {
+  transform: scale(1.05);
+}
+
+/* ============================= */
+/* MODAL ACTIONS */
+/* ============================= */
+
+.modal-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ============================= */
+/* SMOOTH THEME TRANSITION */
+/* ============================= */
+
+body,
+.automation-card,
+.filter-box,
+.modal-box,
+input,
+button {
+  transition: all 0.3s ease;
+}
+
+/* ===================================================== */
+/* 🔥🔥🔥 NEW MODERN ADDITIONS (ONLY ADDED BELOW) */
+/* ===================================================== */
+
+/* BUTTON IMPROVEMENT */
+button {
+  transition: all 0.25s ease;
+  font-weight: 500;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+/* SAVE BUTTON */
+.modal-actions button:first-child {
+  background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+  color: #fff !important;
+}
+
+/* CANCEL BUTTON */
+.modal-actions button:last-child {
+  background: #ef4444 !important;
+  color: #fff !important;
+}
+
+/* MODERN DROPDOWN */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+select:focus {
+  border-color: #7b5cff;
+  box-shadow: 0 0 0 2px rgba(123,92,255,0.2);
+}
+
+/* INPUT FOCUS EFFECT */
+.modal-box input:focus,
+.modal-box textarea:focus {
+  border-color: #7b5cff !important;
+  box-shadow: 0 0 0 2px rgba(123,92,255,0.2);
+}
+
+ 
+/* ===================== */
+/* 🌑 DARK MODE */
+/* ===================== */
+
+body:not(.light-theme) .modal .modal-box {
+  background: #0f172a;
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.8),
+    0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* ===================== */
+/* 🔥 FIX INPUTS (AFTER RESET) */
+/* ===================== */
+
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  outline: none;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #111827;
+}
+
+/* DARK INPUT */
+body:not(.light-theme) .modal-box input,
+body:not(.light-theme) .modal-box select,
+body:not(.light-theme) .modal-box textarea {
+  background: #020617;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ===================== */
+/* 🔥 BUTTONS MODERN */
+/* ===================== */
+
+.save-btn {
+  padding: 10px 20px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+.cancel-btn {
+  padding: 10px 20px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+/* ===================== */
+/* 🔥 BUTTON HOVER */
+/* ===================== */
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(34,197,94,0.4);
+}
+
+.cancel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(239,68,68,0.4);
+}
+
+
+/* ===================================================== */
+/* 🔥 FIX SELECT DROPDOWN (TRIGGER ISSUE) */
+/* ===================================================== */
+
+.modal-box select {
+  appearance: auto !important;   /* allow native dropdown */
+  -webkit-appearance: menulist !important;
+  -moz-appearance: menulist !important;
+
+  cursor: pointer;
+}
+
+/* FIX DROPDOWN VISIBILITY */
+.modal-box select:focus {
+  outline: none;
+  border-color: #7b5cff !important;
+}
+
+/* IMPORTANT: remove overlay issue */
+.modal-box {
+  overflow: visible !important;
+}
+select:invalid {
+  color: #9ca3af;
+}
+
+/* ===================================================== */
+/* ✅ SIMPLE MODAL BACKGROUND FIX (NO EXTRA DESIGN) */
+/* ===================================================== */
+
+/* DEFAULT */
+.modal-box {
+  background: #ffffff;
+  border-radius: 15px;
+}
+
+/* 🌑 DARK MODE */
+body:not(.light-theme) .modal-box {
+  background: #020617 !important;  /* pure dark */
+}
+
+/* ☀️ LIGHT MODE */
+body.light-theme .modal-box {
+  background: #ffffff !important;  /* pure white */
+}
+
+/* KEEP INPUT MATCHING */
+body:not(.light-theme) .modal-box input,
+body:not(.light-theme) .modal-box select,
+body:not(.light-theme) .modal-box textarea {
+  background: #020617;
+  color: #fff;
+}
+
+body.light-theme .modal-box input,
+body.light-theme .modal-box select,
+body.light-theme .modal-box textarea {
+  background: #ffffff;
+  color: #111827;
+}
+
+
+/* ================================= */
+/* 🔥 FORCE CARD STYLE (ANGULAR FIX) */
+/* ================================= */
+
+::ng-deep .automation-card {
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+/* ☀️ LIGHT MODE */
+::ng-deep body.light-theme .automation-card {
+  background: #ffffff !important;
+  border: 0.6px solid #3b82f6 !important;
+
+  box-shadow: 
+    0 6px 15px rgba(59,130,246,0.15),
+    0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* 🌑 DARK MODE */
+::ng-deep body:not(.light-theme) .automation-card {
+  background: #020617 !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.8),
+    0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* 🔥 HOVER EFFECT */
+::ng-deep .automation-card:hover {
+  transform: translateY(-4px);
+}
+
+/* LIGHT HOVER */
+::ng-deep body.light-theme .automation-card:hover {
+  box-shadow: 
+    0 10px 25px rgba(59,130,246,0.25),
+    0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* DARK HOVER */
+::ng-deep body:not(.light-theme) .automation-card:hover {
+  box-shadow:
+    0 25px 50px rgba(0,0,0,0.9),
+    0 10px 25px rgba(0,0,0,0.6);
+}
+/* ================================= */
+/* 🔥 MODAL THEME FIX */
+/* ================================= */
+
+/* DEFAULT (LIGHT) */
+.modal .modal-box {
+  background: #ffffff !important;
+  color: #111827 !important;
+}
+
+/* 🌑 DARK MODE MODAL */
+body:not(.light-theme) .modal .modal-box {
+  background: #020617 !important;
+  color: #e5e7eb !important;
+}
+
+/* INPUT FIX */
+.modal-box input,
+.modal-box textarea,
+.modal-box select {
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+}
+
+/* DARK INPUT */
+body:not(.light-theme) .modal-box input,
+body:not(.light-theme) .modal-box textarea,
+body:not(.light-theme) .modal-box select {
+  background: #020617 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ================================= */
+/* 🔥 TEXT VISIBILITY FIX */
+/* ================================= */
+
+/* HEADER TEXT */
+.header p {
+  color: #6b7280;
+}
+
+/* DARK MODE TEXT */
+body:not(.light-theme) .header p {
+  color: #9ca3af !important;
+}
+
+/* LABEL FIX */
+.modal-box label {
+  color: #374151;
+}
+
+/* DARK LABEL */
+body:not(.light-theme) .modal-box label {
+  color: #cbd5f5 !important;
+}
+
+/* ================================= */
+/* 🔥 OVERLAY FIX */
+/* ================================= */
+
+.modal {
+  background: rgba(0,0,0,0.6);
+}
+
+/* ================================= */
+/* 🔥 FINAL MODAL FIX */
+/* ================================= */
+
+.modal .modal-box {
+  width: 400px;
+  padding: 24px;
+  border-radius: 18px;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* ☀️ LIGHT MODE */
+body.light-theme .modal .modal-box {
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.15),
+    0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* 🌑 DARK MODE */
+body:not(.light-theme) .modal .modal-box {
+  background: #020617;
+  color: #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.8),
+    0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* ================================= */
+/* 📱 MOBILE RESPONSIVE FIX */
+/* ================================= */
+
+@media (max-width: 768px) {
+
+  /* PAGE PADDING */
+  .automation-page {
+    padding: 12px;
+  }
+
+  /* HEADER STACK */
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .gradient-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* FILTER */
+  .filter-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-box {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .filter-box button {
+    flex: 1;
+  }
+
+  /* CARD */
+  .automation-card {
+    padding: 15px;
+  }
+
+  .card-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* TEXT SIZE */
+  .automation-card h3 {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .automation-card p {
+    font-size: 13px;
+  }
+
+  /* ACTION BUTTONS */
+  .card-bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .actions {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .actions button {
+    flex: 1;
+    margin-left: 0;
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  /* MODAL */
+  .modal .modal-box {
+    width: 95%;
+    max-width: 95%;
+    padding: 16px;
+  }
+
+  /* INPUT */
+  .modal-box input,
+  .modal-box textarea,
+  .modal-box select {
+    font-size: 14px;
+  }
+
+  /* MODAL BUTTONS */
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+}
+
+
+/* ================================= */
+/* 📱 EXTRA SMALL DEVICES */
+/* ================================= */
+
+@media (max-width: 480px) {
+
+  .automation-card h3 {
+    font-size: 14px;
+  }
+
+  .automation-card p {
+    font-size: 12px;
+  }
+
+  .gradient-btn {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .filter-box span {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}
+/* HEADER TEXT FIX */
+
+/* LIGHT MODE */
+body.light-theme .header-text {
+  color: #111827;
+}
+
+/* DARK MODE */
+body:not(.light-theme) .header-text {
+  color: #e5e7eb;
+}

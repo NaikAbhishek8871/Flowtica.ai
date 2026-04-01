@@ -1,0 +1,121 @@
+<div class="container-fluid analytics-container">
+
+  <!-- HEADER -->
+  <div class="header mb-4">
+  <h2 class="title d-flex align-items-center gap-2">
+    
+    <span>Analytics</span>
+  </h2>
+  
+</div>
+  <!-- KPI -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card">
+        <div class="kpi-icon bg-blue">
+          <i class="bi bi-people"></i>
+        </div>
+        <h5>{{kpi.totalLeads}}</h5>
+        <p>Leads</p>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card">
+        <div class="kpi-icon bg-green">
+          <i class="bi bi-check-circle"></i>
+        </div>
+        <h5>{{kpi.converted}}</h5>
+        <p>Converted</p>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card">
+        <div class="kpi-icon bg-purple">
+          <i class="bi bi-graph-up"></i>
+        </div>
+        <h5>{{kpi.conversionRate}}%</h5>
+        <p>Conversion</p>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card">
+        <div class="kpi-icon bg-orange">
+          <i class="bi bi-chat-dots"></i>
+        </div>
+        <h5>{{kpi.messagesSent}}</h5>
+        <p>Messages</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CHARTS -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-12 col-md-7">
+      <div class="card chart-card">
+        <h6><i class="bi bi-activity me-2"></i>Leads over time</h6>
+        <canvas id="leadsChart"></canvas>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-5">
+      <div class="card chart-card">
+        <h6><i class="bi bi-bar-chart me-2"></i>DM Sent vs Converted</h6>
+        <canvas id="conversionChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TABLE -->
+  <div class="card table-card mb-4">
+    <h6><i class="bi bi-trophy me-2"></i>Top Performing Automation</h6>
+
+    <div class="table-responsive">
+      <table class="table modern-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Leads</th>
+            <th>Conversion</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of automations">
+            <td class="fw-medium">{{item.name}}</td>
+            <td>{{item.leads}}</td>
+            <td>
+              <span class="badge conversion-badge">
+                {{item.conversion}}%
+              </span>
+            </td>
+            <td>
+              <span class="badge"
+                [ngClass]="item.status === 'Active' ? 'status-active' : 'status-paused'">
+                {{item.status}}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="card insight-card">
+    <h6><i class="bi bi-lightbulb me-2"></i>Quick Insights</h6>
+    <ul>
+      <li *ngFor="let insight of insights">
+        <i class="bi bi-check2-circle me-2 text-success"></i>
+        {{insight}}
+      </li>
+    </ul>
+  </div>
+
+</div>

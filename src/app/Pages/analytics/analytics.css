@@ -1,0 +1,343 @@
+/* ============================= */
+/* 🌍 BASE */
+/* ============================= */
+
+.analytics-container {
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* ============================= */
+/* 🌑 DARK MODE */
+/* ============================= */
+
+body:not(.light-theme) .analytics-container {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+/* ============================= */
+/* ☀️ LIGHT MODE */
+/* ============================= */
+
+body.light-theme .analytics-container {
+  background: #f4f7fb;
+  color: #111827;
+}
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* DARK */
+body:not(.light-theme) .title {
+  color: #ffffff;
+}
+
+/* LIGHT */
+body.light-theme .title {
+  color: #111827;
+}
+
+.subtitle {
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* DARK */
+body:not(.light-theme) .subtitle {
+  color: #9cacc3;
+}
+
+/* LIGHT */
+body.light-theme .subtitle {
+  color: #6b7280;
+}
+
+/* ============================= */
+/* KPI CARD */
+/* ============================= */
+
+.kpi-card {
+  padding: 18px;
+  border-radius: 16px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+/* DARK */
+body:not(.light-theme) .kpi-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* LIGHT */
+body.light-theme .kpi-card {
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+}
+
+.kpi-card:hover {
+  transform: translateY(-6px);
+}
+
+/* KPI ICON */
+.kpi-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  color: #fff;
+  font-size: 18px;
+}
+
+/* COLORS */
+.bg-blue { background: #3b82f6; }
+.bg-green { background: #22c55e; }
+.bg-purple { background: #8b5cf6; }
+.bg-orange { background: #f59e0b; }
+
+/* TEXT */
+.kpi-card h5 {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+/* DARK */
+body:not(.light-theme) .kpi-card p {
+  color: #94a3b8;
+}
+
+/* LIGHT */
+body.light-theme .kpi-card p {
+  color: #6b7280;
+}
+
+/* ============================= */
+/* CARDS */
+/* ============================= */
+
+.card {
+  border-radius: 16px;
+  transition: 0.3s;
+}
+
+/* DARK */
+body:not(.light-theme) .card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* LIGHT */
+body.light-theme .card {
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.04);
+}
+
+/* ============================= */
+/* CHART + TABLE */
+/* ============================= */
+
+.chart-card,
+.table-card {
+  padding: 16px;
+}
+
+/* ============================= */
+/* TABLE */
+/* ============================= */
+
+.modern-table th {
+  font-size: 12px;
+  border-bottom: 1px solid;
+}
+
+/* DARK */
+body:not(.light-theme) .modern-table th {
+  color: #9ca3af;
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* LIGHT */
+body.light-theme .modern-table th {
+  color: #9ca3af;
+  border-color: #e5e7eb;
+}
+
+.modern-table td {
+  font-size: 14px;
+}
+
+/* DARK */
+body:not(.light-theme) .modern-table td {
+  color: #e5e7eb;
+}
+
+/* LIGHT */
+body.light-theme .modern-table td {
+  color: #374151;
+}
+
+/* HOVER */
+body:not(.light-theme) .modern-table tr:hover {
+  background: rgba(139,92,246,0.1);
+}
+
+body.light-theme .modern-table tr:hover {
+  background: #f9fafb;
+}
+
+/* ============================= */
+/* BADGES */
+/* ============================= */
+
+.conversion-badge {
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+/* DARK */
+body:not(.light-theme) .conversion-badge {
+  background: rgba(56,189,248,0.2);
+  color: #38bdf8;
+}
+
+/* LIGHT */
+body.light-theme .conversion-badge {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.status-active {
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* DARK */
+body:not(.light-theme) .status-active {
+  background: rgba(34,197,94,0.2);
+  color: #22c55e;
+}
+
+/* LIGHT */
+body.light-theme .status-active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.status-paused {
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* DARK */
+body:not(.light-theme) .status-paused {
+  background: rgba(239,68,68,0.2);
+  color: #ef4444;
+}
+
+/* LIGHT */
+body.light-theme .status-paused {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* ============================= */
+/* INSIGHTS */
+/* ============================= */
+
+.insight-card {
+  padding: 16px;
+}
+
+.insight-card ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.insight-card li {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* DARK */
+body:not(.light-theme) .insight-card li {
+  color: #cbd5f5;
+}
+
+/* LIGHT */
+body.light-theme .insight-card li {
+  color: #374151;
+}
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .analytics-container {
+    padding: 16px;
+  }
+
+  .kpi-card h5 {
+    font-size: 16px;
+  }
+}
+
+/* ============================= */
+/* SMOOTH TRANSITION */
+/* ============================= */
+
+body,
+.card,
+.kpi-card,
+.analytics-container {
+  transition: all 0.3s ease;
+}
+/* ============================= */
+/* 🚨 FINAL FORCE DARK TABLE FIX */
+/* ============================= */
+
+/* TARGET YOUR EXACT TABLE AREA */
+body:not(.light-theme) .table,
+body:not(.light-theme) .table th,
+body:not(.light-theme) .table td {
+  background-color: #020617 !important;
+  color: #e5e7eb !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* HEADER */
+body:not(.light-theme) .table thead th {
+  background: #0f172a !important;
+  color: #cbd5f5 !important;
+}
+
+/* REMOVE BOOTSTRAP STRIPES */
+body:not(.light-theme) .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #020617 !important;
+}
+
+/* HOVER */
+body:not(.light-theme) .table-hover tbody tr:hover {
+  background-color: rgba(139,92,246,0.15) !important;
+}
+
+/* FIX CARD BACKGROUND (IMPORTANT) */
+body:not(.light-theme) .card,
+body:not(.light-theme) .table-responsive {
+  background: #020617 !important;
+}

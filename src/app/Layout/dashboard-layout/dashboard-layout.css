@@ -1,0 +1,84 @@
+/* ================= LAYOUT ================= */
+
+.layout {
+  display: flex;
+  width: 100%;
+
+  margin-top: 43px; /* ✅ match header */
+
+  background: #0b0f1a; /* 🌑 dark default */
+  min-height: calc(100vh - 60px);
+
+  overflow-x: hidden;
+}
+
+/* ☀️ LIGHT MODE (SCOPED) */
+body.light-theme .app-layout .layout {
+  background: #f4f6fb;
+}
+
+/* ================= CONTENT ================= */
+
+.content {
+  padding: 24px;
+  min-height: calc(100vh - 60px);
+
+  width: 100%;
+
+  transition: all 0.3s ease;
+
+  padding-bottom: 80px; /* footer space */
+}
+
+/* ================= SIDEBAR OPEN ================= */
+
+.content.sidebar-open {
+  margin-left: 240px; /* ✅ match sidebar */
+  width: calc(100% - 240px);
+}
+
+/* ================= SIDEBAR CLOSED ================= */
+
+.content.sidebar-closed {
+  margin-left: 0;
+  width: 100%;
+}
+
+/* ================= OVERLAY ================= */
+
+.overlay {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+
+  background: rgba(0,0,0,0.5);
+
+  z-index: 2000;
+}
+
+@media (min-width: 769px) {
+  .overlay {
+    display: none;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  .layout {
+    margin-top: 60px;
+  }
+
+  .content {
+    padding: 16px;
+    padding-bottom: 90px;
+  }
+
+  .content.sidebar-open {
+    margin-left: 0; /* ✅ important fix */
+    width: 100%;
+  }
+}

@@ -1,0 +1,113 @@
+ <div class="automation-page">
+
+  <!-- HEADER -->
+  <div class="header">
+   <div class="header-text">
+      <h2>Automations</h2>
+      <p>Create and manage your Instagram DM automations</p>
+    </div>
+
+    <div class="header-actions">
+      <button class="gradient-btn" (click)="openForm()">
+        + Create Automation
+      </button>
+    </div>
+  </div>
+
+  <!-- FILTER -->
+  <div class="filter-row">
+    <div class="filter-box">
+      <span>Status</span>
+      <button (click)="setStatus('all')" [class.active]="status==='all'">All</button>
+      <button (click)="setStatus('active')" [class.active]="status==='active'">Active</button>
+      <button (click)="setStatus('inactive')" [class.active]="status==='inactive'">Inactive</button>
+    </div>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <p *ngIf="filteredList().length === 0" class="empty">
+    No automations found
+  </p>
+
+  <!-- LIST -->
+  <div class="automation-card" *ngFor="let item of filteredList(); let i = index">
+
+    <div class="card-top">
+      <div>
+
+        <!-- MAIN LINE -->
+        <h3>
+          {{ item.trigger | titlecase }} → "{{ item.keyword }}" → Sends DM
+        </h3>
+
+        <!-- MESSAGE PREVIEW -->
+        <p class="message-preview">{{ item.message }}</p>
+
+        <!-- LEADS -->
+        <p>Leads: {{ item.leads }}</p>
+
+        <!-- STATUS -->
+        <p>
+          Status:
+          <span
+            class="status-badge"
+            [ngClass]="item.active ? 'active-badge' : 'paused-badge'"
+          >
+            {{ item.active ? 'Active' : 'Paused' }}
+          </span>
+        </p>
+
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="card-bottom">
+      <div class="actions">
+        <button (click)="edit(item, i)">Edit</button>
+
+        <button (click)="toggle(item)">
+          {{ item.active ? 'Pause' : 'Activate' }}
+        </button>
+
+        <button class="delete" (click)="delete(i)">Delete</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal" *ngIf="showForm">
+    <div class="modal-box">
+
+      <h2>{{ editIndex !== null ? 'Edit Automation' : 'Create Automation' }}</h2>
+
+      <!-- NAME -->
+      <label>Automation Name</label>
+      <input [(ngModel)]="form.name" placeholder="Welcome Flow" />
+
+      <!-- TRIGGER -->
+      <label>Trigger</label>
+      <select [(ngModel)]="form.trigger">
+        <option value="comment">Comment Keyword</option>
+        <option value="dm">DM Keyword</option>
+        <option value="story">Story Reply</option>
+      </select>
+
+      <!-- KEYWORD -->
+      <label>Keyword</label>
+      <input [(ngModel)]="form.keyword" placeholder="START" />
+
+      <!-- MESSAGE -->
+      <label>Reply Message</label>
+      <textarea [(ngModel)]="form.message" placeholder="Hey! Check your DM 👇"></textarea>
+
+      <!-- ACTION -->
+      <div class="modal-actions">
+        <button class="save-btn" (click)="save()">Save Automation</button>
+        <button class="cancel-btn" (click)="close()">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

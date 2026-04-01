@@ -1,0 +1,676 @@
+<div class="bio-builder-page">
+  <div class="container-fluid">
+    <div class="row compact-main-grid">
+      <div class="col-12 col-xl-7">
+        <div class="builder-card h-100">
+          <div class="profile-top-editor mb-3">
+            <div class="row g-3 align-items-stretch">
+              <div class="col-12 col-lg-7">
+                <input
+                  #profileInput
+                  type="file"
+                  accept="image/*"
+                  class="d-none"
+                  (change)="onProfileImageSelected($event)"
+                />
+
+                <div class="d-flex align-items-start gap-3 h-100">
+                  <div class="profile-avatar-top flex-shrink-0" (click)="profileInput.click()">
+                    <img
+                      *ngIf="profilePreviewUrl"
+                      [src]="profilePreviewUrl"
+                      alt="Profile preview"
+                      class="w-100 h-100 object-fit-cover rounded-circle"
+                    />
+                    <span *ngIf="!profilePreviewUrl">
+                      {{ userSlug ? (userSlug[0] | uppercase) : 'U' }}
+                    </span>
+                  </div>
+
+                  <div class="flex-grow-1 overflow-hidden">
+                    <input
+                      type="text"
+                      class="form-control editor-name-input mb-2"
+                      [(ngModel)]="userSlug"
+                      placeholder="yourname"
+                    />
+
+                    <textarea
+                      class="form-control editor-bio-input mb-3"
+                      [(ngModel)]="bioText"
+                      rows="2"
+                      maxlength="120"
+                      placeholder="Add bio"
+                    ></textarea>
+
+                    <div class="d-flex align-items-center flex-wrap social-bar">
+                      <a
+                        *ngFor="let social of activePreviewSocials"
+                        class="top-social-btn active"
+                        [href]="getSocialHref(social)"
+                        target="_blank"
+                        rel="noopener"
+                        [title]="getSocialLabel(social.platform)"
+                      >
+                        <ng-container [ngSwitch]="social.platform">
+                          <svg *ngSwitchCase="'whatsapp'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 4a8 8 0 0 0-6.9 12l-.8 3.2 3.3-.8A8 8 0 1 0 12 4Z"></path>
+                            <path d="M9.4 8.8c.2-.4.4-.4.6-.4h.5c.1 0 .3 0 .4.3l.8 1.9c.1.2 0 .3-.1.5l-.4.5c-.1.1-.2.3-.1.5.3.5.8 1.2 1.8 1.7 1.2.6 2 .7 2.3.6.2 0 .4-.2.5-.4l.5-.7c.1-.1.3-.2.5-.1l1.7.8c.2.1.3.2.2.4l-.3 1.1c-.1.3-.3.5-.6.7-.5.3-1.2.4-1.9.2-1-.2-2.3-.7-3.7-2-1.7-1.5-2.3-3-2.6-4-.2-.6-.1-1.3.2-1.8Z" class="fill-dot"></path>
+                          </svg>
+
+                          <svg *ngSwitchCase="'instagram'" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect>
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <circle cx="17.2" cy="6.8" r="1.2" class="fill-dot"></circle>
+                          </svg>
+
+                          <svg *ngSwitchCase="'mail'" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3.5" y="6" width="17" height="12" rx="2"></rect>
+                            <path d="M5 8l7 5 7-5"></path>
+                          </svg>
+
+                          <svg *ngSwitchCase="'youtube'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21 12s0-3.2-.4-4.7a2.4 2.4 0 0 0-1.7-1.7C17.4 5 12 5 12 5s-5.4 0-6.9.6A2.4 2.4 0 0 0 3.4 7.3C3 8.8 3 12 3 12s0 3.2.4 4.7a2.4 2.4 0 0 0 1.7 1.7C6.6 19 12 19 12 19s5.4 0 6.9-.6a2.4 2.4 0 0 0 1.7-1.7C21 15.2 21 12 21 12Z"></path>
+                            <path d="M10 9.5 15 12l-5 2.5Z" class="fill-dot"></path>
+                          </svg>
+
+                          <svg *ngSwitchCase="'linkedin'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M7 9v8"></path>
+                            <path d="M11 17v-4.5a2.5 2.5 0 0 1 5 0V17"></path>
+                            <path d="M3.8 9H8"></path>
+                            <circle cx="5.8" cy="6.4" r="1.2" class="fill-dot"></circle>
+                          </svg>
+
+                          <svg *ngSwitchCase="'telegram'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21 4 3 11.2l5.8 2.2L18 7.3l-7 7.2v4.5l3.2-3.1 4.8 3L21 4Z"></path>
+                          </svg>
+
+                          <svg *ngSwitchCase="'facebook'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M14 8h2.5V4.5H14c-2.2 0-4 1.8-4 4V11H8v3.5h2V20h4v-5.5h2.2L17 11H14V8.8c0-.5.4-.8 1-.8Z"></path>
+                          </svg>
+
+                          <svg *ngSwitchCase="'x'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 4l6.4 8.4L4.4 20H7l4.6-5.5L15.7 20H20l-6.7-8.8L19.2 4h-2.6L12 9.4 8 4H4Z"></path>
+                          </svg>
+                        </ng-container>
+                      </a>
+
+                      <button
+                        type="button"
+                        class="top-social-plus-btn"
+                        (click)="openSocialManager()"
+                        title="Manage social icons"
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 5v14"></path>
+                          <path d="M5 12h14"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-5">
+                <div class="compact-theme-box">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="mb-0 fw-bold text-dark">Theme</h6>
+                    <span class="badge rounded-pill text-primary-emphasis bg-primary-subtle px-3 py-2">Theme</span>
+                  </div>
+
+                  <div class="d-flex align-items-center gap-3 mb-3">
+                    <button
+                      class="theme-dot midnight"
+                      [class.active]="selectedTheme === 'midnight'"
+                      (click)="toggleThemeSettings('midnight')"
+                      type="button"
+                    ></button>
+
+                    <button
+                      class="theme-dot minimal"
+                      [class.active]="selectedTheme === 'minimal'"
+                      (click)="toggleThemeSettings('minimal')"
+                      type="button"
+                    ></button>
+
+                    <button
+                      class="theme-dot sunset"
+                      [class.active]="selectedTheme === 'sunset'"
+                      (click)="toggleThemeSettings('sunset')"
+                      type="button"
+                    ></button>
+                  </div>
+
+                  <div class="theme-mini-preview" [ngStyle]="{ background: themeConfig.backgroundColor }"></div>
+
+                  <div class="theme-settings-box" *ngIf="themeSettingsOpen">
+                    <div class="row g-2">
+                      <div class="col-6">
+                        <div class="theme-color-card text-center">
+                          <label class="small fw-semibold text-secondary d-block mb-1">Text</label>
+                          <input
+                            type="color"
+                            [(ngModel)]="themeConfig.textColor"
+                            class="form-control form-control-color mx-auto shadow-none border-0"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-6">
+                        <div class="theme-color-card text-center">
+                          <label class="small fw-semibold text-secondary d-block mb-1">Button</label>
+                          <input
+                            type="color"
+                            [(ngModel)]="themeConfig.buttonColor"
+                            class="form-control form-control-color mx-auto shadow-none border-0"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- theme end -->
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <button
+              class="btn fast-add-btn w-100 fw-bold d-flex align-items-center justify-content-center gap-2"
+              (click)="openAddModal()"
+              type="button"
+            >
+              <span class="fs-4 lh-1">＋</span>
+              <span>Add</span>
+              <span class="fast-pill">Fast</span>
+            </button>
+          </div>
+
+          <div class="d-flex flex-column gap-3">
+            <div *ngFor="let block of blocks; let i = index" class="block-card" [ngIf]="block.type !== 'social'">
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
+                <div>
+                  <span
+                    class="badge rounded-pill px-3 py-2 fw-bold text-uppercase block-badge"
+                    [class.badge-link]="block.type === 'link'"
+                    [class.badge-product]="block.type === 'product'"
+                    [class.badge-dm]="block.type === 'dm'"
+                  >
+                    {{
+                      block.type === 'dm'
+                        ? 'DM Trigger'
+                        : block.type === 'product'
+                        ? 'Product'
+                        : 'Link'
+                    }}
+                  </span>
+                </div>
+
+                <div class="d-grid d-sm-flex gap-2 action-btn-group">
+                  <button class="btn btn-sm btn-edit fw-semibold" (click)="editBlock(i)" type="button">Edit</button>
+                  <button class="btn btn-sm btn-remove fw-semibold" (click)="removeBlock(i)" type="button">Remove</button>
+                </div>
+              </div>
+
+              <ng-container *ngIf="block.type === 'link'">
+                <div class="preview-mini">
+                  <strong>{{ block.title || 'Untitled Link' }}</strong>
+                  <span>{{ block.url || 'No URL added yet' }}</span>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="block.type === 'product'">
+                <div class="preview-mini">
+                  <strong>{{ block.productName || 'No product name' }}</strong>
+                  <span>{{ block.buyUrl || 'No link added' }}</span>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="block.type === 'dm'">
+                <div class="preview-mini">
+                  <strong>{{ block.keyword || 'No keyword' }}</strong>
+                  <span>{{ block.message || 'No message added' }}</span>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-xl-5">
+        <div class="builder-card mobile-preview-wrap">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h6 class="mb-0 fw-bold text-dark">Live mobile preview</h6>
+            <span class="preview-live-badge">Live</span>
+          </div>
+
+          <div class="mobile-preview-stage">
+            <div class="mobile-preview-device">
+              <div
+                class="mobile-preview-screen"
+                [ngStyle]="{
+                  background: themeConfig.backgroundColor,
+                  color: themeConfig.textColor
+                }"
+              >
+                <div class="mobile-inner">
+                  <div class="mobile-profile-area">
+                    <div class="mobile-avatar mx-auto mb-3">
+                      <img
+                        *ngIf="profilePreviewUrl"
+                        [src]="profilePreviewUrl"
+                        alt="Profile preview"
+                        class="w-100 h-100 object-fit-cover rounded-circle"
+                      />
+                      <span *ngIf="!profilePreviewUrl">{{ userSlug ? (userSlug[0] | uppercase) : 'U' }}</span>
+                    </div>
+
+                    <div class="mobile-username">{{ userSlug || 'yourname' }}</div>
+                    <div class="mobile-bio" *ngIf="bioText?.trim()">{{ bioText }}</div>
+
+                    <div class="mobile-socials" *ngIf="activePreviewSocials.length">
+                      <a
+                        *ngFor="let social of activePreviewSocials"
+                        class="mobile-social-link"
+                        [href]="getSocialHref(social)"
+                        target="_blank"
+                      >
+                        <ng-container [ngSwitch]="social.platform">
+                          <svg *ngSwitchCase="'whatsapp'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 4a8 8 0 0 0-6.9 12l-.8 3.2 3.3-.8A8 8 0 1 0 12 4Z"></path>
+                            <path d="M9.4 8.8c.2-.4.4-.4.6-.4h.5c.1 0 .3 0 .4.3l.8 1.9c.1.2 0 .3-.1.5l-.4.5c-.1.1-.2.3-.1.5.3.5.8 1.2 1.8 1.7 1.2.6 2 .7 2.3.6.2 0 .4-.2.5-.4l.5-.7c.1-.1.3-.2.5-.1l1.7.8c.2.1.3.2.2.4l-.3 1.1c-.1.3-.3.5-.6.7-.5.3-1.2.4-1.9.2-1-.2-2.3-.7-3.7-2-1.7-1.5-2.3-3-2.6-4-.2-.6-.1-1.3.2-1.8Z" class="fill-dot"></path>
+                          </svg>
+
+                          <svg *ngSwitchCase="'instagram'" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect>
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <circle cx="17.2" cy="6.8" r="1.2" class="fill-dot"></circle>
+                          </svg>
+
+                          <svg *ngSwitchCase="'mail'" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3.5" y="6" width="17" height="12" rx="2"></rect>
+                            <path d="M5 8l7 5 7-5"></path>
+                          </svg>
+
+                          <svg *ngSwitchCase="'youtube'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21 12s0-3.2-.4-4.7a2.4 2.4 0 0 0-1.7-1.7C17.4 5 12 5 12 5s-5.4 0-6.9.6A2.4 2.4 0 0 0 3.4 7.3C3 8.8 3 12 3 12s0 3.2.4 4.7a2.4 2.4 0 0 0 1.7 1.7C6.6 19 12 19 12 19s5.4 0 6.9-.6a2.4 2.4 0 0 0 1.7-1.7C21 15.2 21 12 21 12Z"></path>
+                            <path d="M10 9.5 15 12l-5 2.5Z" class="fill-dot"></path>
+                          </svg>
+
+                          <svg *ngSwitchCase="'linkedin'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M7 9v8"></path>
+                            <path d="M11 17v-4.5a2.5 2.5 0 0 1 5 0V17"></path>
+                            <path d="M3.8 9H8"></path>
+                            <circle cx="5.8" cy="6.4" r="1.2" class="fill-dot"></circle>
+                          </svg>
+
+                          <svg *ngSwitchCase="'telegram'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21 4 3 11.2l5.8 2.2L18 7.3l-7 7.2v4.5l3.2-3.1 4.8 3L21 4Z"></path>
+                          </svg>
+
+                          <svg *ngSwitchCase="'facebook'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M14 8h2.5V4.5H14c-2.2 0-4 1.8-4 4V11H8v3.5h2V20h4v-5.5h2.2L17 11H14V8.8c0-.5.4-.8 1-.8Z"></path>
+                          </svg>
+
+                          <svg *ngSwitchCase="'x'" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 4l6.4 8.4L4.4 20H7l4.6-5.5L15.7 20H20l-6.7-8.8L19.2 4h-2.6L12 9.4 8 4H4Z"></path>
+                          </svg>
+                        </ng-container>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="mobile-links-list">
+                    <a
+                      *ngFor="let block of previewLinkBlocks"
+                      class="mobile-link-btn"
+                      [href]="getPreviewBlockHref(block)"
+                      target="_blank"
+                      [ngStyle]="{
+                        background: themeConfig.buttonColor,
+                        color: themeConfig.textColor
+                      }"
+                    >
+                      {{
+                        block.type === 'product'
+                          ? (block.productName || 'Product')
+                          : (block.title || 'Link')
+                      }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- preview end -->
+    </div>
+  </div>
+
+  <!-- ADD BLOCK MODAL -->
+  <div class="custom-modal-backdrop" *ngIf="showAddModal" (click)="closeAddModal()"></div>
+  <div class="custom-modal" *ngIf="showAddModal">
+    <div class="modal-shell modal-lg-custom" (click)="$event.stopPropagation()">
+      <div class="premium-head d-flex align-items-start justify-content-between gap-3">
+        <div class="d-flex align-items-start gap-3">
+          <div class="premium-head-icon">✨</div>
+          <div>
+            <h2 class="fw-bold text-dark mb-1">Add new block</h2>
+            <p class="text-secondary mb-0 small">Choose block type</p>
+          </div>
+        </div>
+        <button class="btn-close custom-close-btn" (click)="closeAddModal()" type="button"></button>
+      </div>
+
+      <div class="p-3 pt-0">
+        <div class="position-relative mb-3">
+          <span class="search-icon">⌕</span>
+          <input
+            type="text"
+            [(ngModel)]="addSearch"
+            class="form-control modern-input search-input ps-5"
+            placeholder="Search block type..."
+          />
+        </div>
+
+        <div class="d-flex flex-column gap-3">
+          <button
+            class="block-option-card"
+            type="button"
+            *ngFor="let option of filteredAddOptions"
+            (click)="handleAddOption(option.type)"
+          >
+            <div class="d-flex align-items-start gap-3 flex-grow-1 text-start">
+              <div class="option-icon-wrap" [ngClass]="option.colorClass">
+                <ng-container [ngSwitch]="option.type">
+                  <svg *ngSwitchCase="'link'" viewBox="0 0 24 24" aria-hidden="true" class="option-svg">
+                    <path d="M10.5 13.5l3-3"></path>
+                    <path d="M8 15a3.5 3.5 0 0 1 0-5l2-2a3.5 3.5 0 1 1 5 5l-.5.5"></path>
+                    <path d="M16 9a3.5 3.5 0 0 1 0 5l-2 2a3.5 3.5 0 1 1-5-5l.5-.5"></path>
+                  </svg>
+
+                  <svg *ngSwitchCase="'product'" viewBox="0 0 24 24" aria-hidden="true" class="option-svg">
+                    <path d="M6 8h12l-1 10H7L6 8Z"></path>
+                    <path d="M9 8a3 3 0 0 1 6 0"></path>
+                    <path d="M10 12h4"></path>
+                  </svg>
+
+                  <svg *ngSwitchCase="'dm'" viewBox="0 0 24 24" aria-hidden="true" class="option-svg">
+                    <path d="M5 7.5A3.5 3.5 0 0 1 8.5 4h7A3.5 3.5 0 0 1 19 7.5v4A3.5 3.5 0 0 1 15.5 15H11l-4 3v-3.2A3.5 3.5 0 0 1 5 11.5v-4Z"></path>
+                  </svg>
+                </ng-container>
+              </div>
+
+              <div class="flex-grow-1 overflow-hidden">
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+                  <div class="fw-bold text-dark">{{ option.title }}</div>
+                  <span class="badge rounded-pill text-dark bg-light border px-2 py-1 small">{{ option.chip }}</span>
+                </div>
+                <div class="small text-secondary">{{ option.desc }}</div>
+              </div>
+            </div>
+
+            <div class="option-arrow">→</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL MANAGER POPUP -->
+  <div class="custom-modal-backdrop full-page" *ngIf="showSocialManagerPopup" (click)="closeSocialManager()"></div>
+  <div class="custom-modal full-page" *ngIf="showSocialManagerPopup">
+    <div class="modal-shell social-icons-modal-shell" (click)="$event.stopPropagation()">
+      <div class="social-icons-modal-head">
+        <div class="social-icons-modal-title">Social icons</div>
+        <button class="social-icons-close-btn" type="button" (click)="closeSocialManager()">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6l12 12"></path>
+            <path d="M18 6l-12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="social-icons-modal-body">
+        <div class="social-icons-intro">
+          <h3>Show visitors where to find you</h3>
+          <p>Add your social profiles, email and more as linked icons on your bio page.</p>
+        </div>
+
+        <!-- Added items on top -->
+        <div class="social-section" *ngIf="addedSocialRows.length">
+          <div class="social-section-title">Added icons</div>
+
+          <div class="social-icons-list">
+            <div class="social-row" *ngFor="let row of addedSocialRows; let i = index">
+              <div class="social-row-drag-wrap">
+                <span class="social-row-drag" aria-hidden="true">
+                  <span></span><span></span>
+                </span>
+                <div class="social-drag-actions">
+                  <button type="button" class="drag-mini-btn" (click)="moveSocialUp(row.platform)">↑</button>
+                  <button type="button" class="drag-mini-btn" (click)="moveSocialDown(row.platform)">↓</button>
+                </div>
+              </div>
+
+              <span class="social-row-icon">
+                <ng-container [ngSwitch]="row.platform">
+                  <svg *ngSwitchCase="'instagram'" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.2" class="fill-dot"></circle></svg>
+                  <svg *ngSwitchCase="'whatsapp'" viewBox="0 0 24 24"><path d="M12 4a8 8 0 0 0-6.9 12l-.8 3.2 3.3-.8A8 8 0 1 0 12 4Z"></path><path d="M9.4 8.8c.2-.4.4-.4.6-.4h.5c.1 0 .3 0 .4.3l.8 1.9c.1.2 0 .3-.1.5l-.4.5c-.1.1-.2.3-.1.5.3.5.8 1.2 1.8 1.7 1.2.6 2 .7 2.3.6.2 0 .4-.2.5-.4l.5-.7c.1-.1.3-.2.5-.1l1.7.8c.2.1.3.2.2.4l-.3 1.1c-.1.3-.3.5-.6.7-.5.3-1.2.4-1.9.2-1-.2-2.3-.7-3.7-2-1.7-1.5-2.3-3-2.6-4-.2-.6-.1-1.3.2-1.8Z" class="fill-dot"></path></svg>
+                  <svg *ngSwitchCase="'mail'" viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12" rx="2"></rect><path d="M5 8l7 5 7-5"></path></svg>
+                  <svg *ngSwitchCase="'youtube'" viewBox="0 0 24 24"><path d="M21 12s0-3.2-.4-4.7a2.4 2.4 0 0 0-1.7-1.7C17.4 5 12 5 12 5s-5.4 0-6.9.6A2.4 2.4 0 0 0 3.4 7.3C3 8.8 3 12 3 12s0 3.2.4 4.7a2.4 2.4 0 0 0 1.7 1.7C6.6 19 12 19 12 19s5.4 0 6.9-.6a2.4 2.4 0 0 0 1.7-1.7C21 15.2 21 12 21 12Z"></path><path d="M10 9.5 15 12l-5 2.5Z" class="fill-dot"></path></svg>
+                  <svg *ngSwitchCase="'linkedin'" viewBox="0 0 24 24"><path d="M7 9v8"></path><path d="M11 17v-4.5a2.5 2.5 0 0 1 5 0V17"></path><path d="M3.8 9H8"></path><circle cx="5.8" cy="6.4" r="1.2" class="fill-dot"></circle></svg>
+                  <svg *ngSwitchCase="'telegram'" viewBox="0 0 24 24"><path d="M21 4 3 11.2l5.8 2.2L18 7.3l-7 7.2v4.5l3.2-3.1 4.8 3L21 4Z"></path></svg>
+                  <svg *ngSwitchCase="'facebook'" viewBox="0 0 24 24"><path d="M14 8h2.5V4.5H14c-2.2 0-4 1.8-4 4V11H8v3.5h2V20h4v-5.5h2.2L17 11H14V8.8c0-.5.4-.8 1-.8Z"></path></svg>
+                  <svg *ngSwitchCase="'x'" viewBox="0 0 24 24"><path d="M4 4l6.4 8.4L4.4 20H7l4.6-5.5L15.7 20H20l-6.7-8.8L19.2 4h-2.6L12 9.4 8 4H4Z"></path></svg>
+                  <svg *ngSwitchCase="'snapchat'" viewBox="0 0 24 24"><path d="M12 4c2.2 0 3.8 1.8 3.8 4v1.2c0 .6.2 1 .7 1.3.3.2.7.4 1.2.5-.3.5-.8.8-1.4.9-.2 1.4-1.2 2.1-2.7 2.3-.3.7-.8 1-1.6 1s-1.3-.3-1.6-1c-1.5-.2-2.5-.9-2.7-2.3-.6-.1-1.1-.4-1.4-.9.5-.1.9-.3 1.2-.5.5-.3.7-.7.7-1.3V8c0-2.2 1.6-4 3.8-4Z"></path></svg>
+                  <svg *ngSwitchCase="'pinterest'" viewBox="0 0 24 24"><path d="M12 4a8 8 0 0 0-2.9 15.5l1.1-4.3c-.3-.6-.5-1.4-.5-2.1 0-2 1.1-3.5 2.7-3.5 1.3 0 1.9.9 1.9 2 0 1.2-.8 3-1.2 4.7-.3 1.4.7 2.5 2.1 2.5 2.5 0 4.2-3.2 4.2-6.9 0-2.9-1.9-5.1-5.5-5.1-4 0-6.5 2.9-6.5 6.2 0 1.1.3 2 .9 2.6.2.2.2.3.1.6l-.3 1.1c-.1.3-.3.4-.6.3-1.6-.7-2.4-2.6-2.4-4.7 0-3.5 2.9-7.7 8.8-7.7 4.7 0 7.8 3.4 7.8 7.1 0 4.9-2.7 8.6-6.8 8.6-1.4 0-2.7-.8-3.1-1.6l-.8 3.1"></path></svg>
+                </ng-container>
+              </span>
+
+              <span class="social-row-label">{{ row.label }}</span>
+
+              <button
+                type="button"
+                class="social-row-edit"
+                (click)="openOrEditSocial(row.platform, true)"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 20l4.2-1 9.3-9.3-3.2-3.2L5 15.8 4 20Z"></path>
+                  <path d="M13.8 5.5l3.2 3.2"></path>
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                class="social-row-toggle"
+                [class.is-on]="row.block.isEnabled"
+                (click)="toggleSocialFromManager(row.platform)"
+              >
+                <span class="toggle-knob"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Suggested items below -->
+        <div class="social-section">
+          <div class="social-section-title" *ngIf="addedSocialRows.length">Suggested icons</div>
+
+          <div class="suggested-icon-strip" *ngIf="suggestedSocialOptions.length">
+            <button
+              type="button"
+              class="suggested-social-pill"
+              *ngFor="let social of suggestedSocialOptions"
+              (click)="selectSuggestedSocial(social.platform)"
+              [title]="social.label"
+            >
+              <span class="suggested-plus">+</span>
+
+              <ng-container [ngSwitch]="social.platform">
+                <svg *ngSwitchCase="'instagram'" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.2" class="fill-dot"></circle></svg>
+                <svg *ngSwitchCase="'tiktok'" viewBox="0 0 24 24"><path d="M14 4v9.2a3.2 3.2 0 1 1-2.3-3.1"></path><path d="M14 4c.7 1.6 1.8 2.7 3.8 3V10c-1.5 0-2.8-.4-3.8-1.2"></path></svg>
+                <svg *ngSwitchCase="'whatsapp'" viewBox="0 0 24 24"><path d="M12 4a8 8 0 0 0-6.9 12l-.8 3.2 3.3-.8A8 8 0 1 0 12 4Z"></path><path d="M9.4 8.8c.2-.4.4-.4.6-.4h.5c.1 0 .3 0 .4.3l.8 1.9c.1.2 0 .3-.1.5l-.4.5c-.1.1-.2.3-.1.5.3.5.8 1.2 1.8 1.7 1.2.6 2 .7 2.3.6.2 0 .4-.2.5-.4l.5-.7c.1-.1.3-.2.5-.1l1.7.8c.2.1.3.2.2.4l-.3 1.1c-.1.3-.3.5-.6.7-.5.3-1.2.4-1.9.2-1-.2-2.3-.7-3.7-2-1.7-1.5-2.3-3-2.6-4-.2-.6-.1-1.3.2-1.8Z" class="fill-dot"></path></svg>
+                <svg *ngSwitchCase="'mail'" viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12" rx="2"></rect><path d="M5 8l7 5 7-5"></path></svg>
+                <svg *ngSwitchCase="'youtube'" viewBox="0 0 24 24"><path d="M21 12s0-3.2-.4-4.7a2.4 2.4 0 0 0-1.7-1.7C17.4 5 12 5 12 5s-5.4 0-6.9.6A2.4 2.4 0 0 0 3.4 7.3C3 8.8 3 12 3 12s0 3.2.4 4.7a2.4 2.4 0 0 0 1.7 1.7C6.6 19 12 19 12 19s5.4 0 6.9-.6a2.4 2.4 0 0 0 1.7-1.7C21 15.2 21 12 21 12Z"></path><path d="M10 9.5 15 12l-5 2.5Z" class="fill-dot"></path></svg>
+                <svg *ngSwitchCase="'linkedin'" viewBox="0 0 24 24"><path d="M7 9v8"></path><path d="M11 17v-4.5a2.5 2.5 0 0 1 5 0V17"></path><path d="M3.8 9H8"></path><circle cx="5.8" cy="6.4" r="1.2" class="fill-dot"></circle></svg>
+                <svg *ngSwitchCase="'telegram'" viewBox="0 0 24 24"><path d="M21 4 3 11.2l5.8 2.2L18 7.3l-7 7.2v4.5l3.2-3.1 4.8 3L21 4Z"></path></svg>
+                <svg *ngSwitchCase="'facebook'" viewBox="0 0 24 24"><path d="M14 8h2.5V4.5H14c-2.2 0-4 1.8-4 4V11H8v3.5h2V20h4v-5.5h2.2L17 11H14V8.8c0-.5.4-.8 1-.8Z"></path></svg>
+                <svg *ngSwitchCase="'x'" viewBox="0 0 24 24"><path d="M4 4l6.4 8.4L4.4 20H7l4.6-5.5L15.7 20H20l-6.7-8.8L19.2 4h-2.6L12 9.4 8 4H4Z"></path></svg>
+                <svg *ngSwitchCase="'snapchat'" viewBox="0 0 24 24"><path d="M12 4c2.2 0 3.8 1.8 3.8 4v1.2c0 .6.2 1 .7 1.3.3.2.7.4 1.2.5-.3.5-.8.8-1.4.9-.2 1.4-1.2 2.1-2.7 2.3-.3.7-.8 1-1.6 1s-1.3-.3-1.6-1c-1.5-.2-2.5-.9-2.7-2.3-.6-.1-1.1-.4-1.4-.9.5-.1.9-.3 1.2-.5.5-.3.7-.7.7-1.3V8c0-2.2 1.6-4 3.8-4Z"></path></svg>
+                <svg *ngSwitchCase="'pinterest'" viewBox="0 0 24 24"><path d="M12 4a8 8 0 0 0-2.9 15.5l1.1-4.3c-.3-.6-.5-1.4-.5-2.1 0-2 1.1-3.5 2.7-3.5 1.3 0 1.9.9 1.9 2 0 1.2-.8 3-1.2 4.7-.3 1.4.7 2.5 2.1 2.5 2.5 0 4.2-3.2 4.2-6.9 0-2.9-1.9-5.1-5.5-5.1-4 0-6.5 2.9-6.5 6.2 0 1.1.3 2 .9 2.6.2.2.2.3.1.6l-.3 1.1c-.1.3-.3.4-.6.3-1.6-.7-2.4-2.6-2.4-4.7 0-3.5 2.9-7.7 8.8-7.7 4.7 0 7.8 3.4 7.8 7.1 0 4.9-2.7 8.6-6.8 8.6-1.4 0-2.7-.8-3.1-1.6l-.8 3.1"></path></svg>
+              </ng-container>
+            </button>
+          </div>
+
+          <div class="suggested-empty" *ngIf="!addedSocialRows.length && !suggestedSocialOptions.length">
+            No social icons available.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LINK POPUP -->
+  <div class="custom-modal-backdrop" *ngIf="showLinkPopup" (click)="cancelEditor()"></div>
+  <div class="custom-modal" *ngIf="showLinkPopup && editingLinkBlock">
+    <div class="modal-shell modal-sm-custom p-4" (click)="$event.stopPropagation()">
+      <div class="d-flex align-items-start justify-content-between gap-3 mb-3">
+        <div>
+          <h2 class="fw-bold text-dark mb-1 fs-3">Link block</h2>
+          <p class="small text-secondary mb-0">Add a title and URL for your link.</p>
+        </div>
+        <button class="btn-close custom-close-btn" (click)="cancelEditor()" type="button"></button>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-12">
+          <label class="form-label fw-semibold small">Title</label>
+          <input class="form-control modern-input" type="text" [(ngModel)]="editingLinkBlock.title" placeholder="My Website" />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold small">URL</label>
+          <input class="form-control modern-input" type="url" [(ngModel)]="editingLinkBlock.url" placeholder="https://example.com" />
+        </div>
+      </div>
+
+      <div class="d-grid d-sm-flex gap-2 justify-content-sm-end mt-4">
+        <button class="btn btn-light border fw-semibold popup-btn" (click)="cancelEditor()" type="button">Cancel</button>
+        <button class="btn btn-primary fw-semibold popup-btn" (click)="saveEditor()" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT POPUP -->
+  <div class="custom-modal-backdrop" *ngIf="showProductPopup" (click)="cancelEditor()"></div>
+  <div class="custom-modal" *ngIf="showProductPopup && editingProductBlock">
+    <div class="modal-shell modal-sm-custom p-4" (click)="$event.stopPropagation()">
+      <div class="d-flex align-items-start justify-content-between gap-3 mb-3">
+        <div>
+          <h2 class="fw-bold text-dark mb-1 fs-3">Product block</h2>
+          <p class="small text-secondary mb-0">Add a product name and link.</p>
+        </div>
+        <button class="btn-close custom-close-btn" (click)="cancelEditor()" type="button"></button>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-12">
+          <label class="form-label fw-semibold small">Product Name</label>
+          <input class="form-control modern-input" type="text" [(ngModel)]="editingProductBlock.productName" placeholder="My Course / Ebook / Product" />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold small">Buy Link</label>
+          <input class="form-control modern-input" type="url" [(ngModel)]="editingProductBlock.buyUrl" placeholder="https://buy-link.com" />
+        </div>
+      </div>
+
+      <div class="d-grid d-sm-flex gap-2 justify-content-sm-end mt-4">
+        <button class="btn btn-light border fw-semibold popup-btn" (click)="cancelEditor()" type="button">Cancel</button>
+        <button class="btn btn-primary fw-semibold popup-btn" (click)="saveEditor()" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DM POPUP -->
+  <div class="custom-modal-backdrop" *ngIf="showDmPopup" (click)="cancelEditor()"></div>
+  <div class="custom-modal" *ngIf="showDmPopup && editingDmBlock">
+    <div class="modal-shell modal-sm-custom p-4" (click)="$event.stopPropagation()">
+      <div class="d-flex align-items-start justify-content-between gap-3 mb-3">
+        <div>
+          <h2 class="fw-bold text-dark mb-1 fs-3">DM Trigger block</h2>
+          <p class="small text-secondary mb-0">Add a keyword and reply message.</p>
+        </div>
+        <button class="btn-close custom-close-btn" (click)="cancelEditor()" type="button"></button>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-12">
+          <label class="form-label fw-semibold small">Keyword</label>
+          <input class="form-control modern-input" type="text" [(ngModel)]="editingDmBlock.keyword" placeholder="course" />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold small">Message</label>
+          <textarea class="form-control modern-input modern-textarea" [(ngModel)]="editingDmBlock.message" placeholder="Send this DM reply"></textarea>
+        </div>
+      </div>
+
+      <div class="d-grid d-sm-flex gap-2 justify-content-sm-end mt-4">
+        <button class="btn btn-light border fw-semibold popup-btn" (click)="cancelEditor()" type="button">Cancel</button>
+        <button class="btn btn-primary fw-semibold popup-btn" (click)="saveEditor()" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL EDIT POPUP -->
+  <div class="custom-modal-backdrop full-page" *ngIf="showSocialPopup" (click)="cancelEditor()"></div>
+  <div class="custom-modal full-page" *ngIf="showSocialPopup && editingSocialBlock">
+    <div class="modal-shell modal-sm-custom p-4" (click)="$event.stopPropagation()">
+      <div class="d-flex align-items-start justify-content-between gap-3 mb-3">
+        <div>
+          <h2 class="fw-bold text-dark mb-1 fs-3">{{ getSocialLabel(editingSocialBlock.platform) }}</h2>
+          <p class="small text-secondary mb-0">
+            <ng-container [ngSwitch]="editingSocialBlock.platform">
+              <span *ngSwitchCase="'whatsapp'">Add name and WhatsApp number.</span>
+              <span *ngSwitchCase="'mail'">Add your email address.</span>
+              <span *ngSwitchDefault>Add username and profile URL.</span>
+            </ng-container>
+          </p>
+        </div>
+        <button class="btn-close custom-close-btn" (click)="cancelEditor()" type="button"></button>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-12">
+          <label class="form-label fw-semibold small">{{ socialPrimaryLabel }}</label>
+          <input
+            class="form-control modern-input"
+            [type]="editingSocialBlock.platform === 'mail' ? 'email' : 'text'"
+            [(ngModel)]="editingSocialBlock.username"
+            [placeholder]="socialPrimaryPlaceholder"
+          />
+        </div>
+
+        <div class="col-12" *ngIf="editingSocialBlock.platform !== 'mail'">
+          <label class="form-label fw-semibold small">{{ socialSecondaryLabel }}</label>
+          <input
+            class="form-control modern-input"
+            [type]="editingSocialBlock.platform === 'whatsapp' ? 'tel' : 'url'"
+            [(ngModel)]="editingSocialBlock.profileUrl"
+            [placeholder]="socialSecondaryPlaceholder"
+          />
+        </div>
+
+        <div class="col-12" *ngIf="editingSocialBlock.platform === 'whatsapp'">
+          <div class="form-hint">Phone number must start with +91 and contain 10 digits after it.</div>
+        </div>
+      </div>
+
+      <div class="d-grid d-sm-flex gap-2 justify-content-sm-end mt-4">
+        <button class="btn btn-light border fw-semibold popup-btn" (click)="cancelEditor()" type="button">Cancel</button>
+        <button class="btn btn-primary fw-semibold popup-btn" (click)="saveEditor()" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

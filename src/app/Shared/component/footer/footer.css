@@ -1,0 +1,89 @@
+/* ================= FOOTER ================= */
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  background: rgba(10, 14, 25, 0.85);
+  backdrop-filter: blur(10px);
+
+  border-top: 1px solid rgba(255,255,255,0.05);
+
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #e5e7eb;
+
+  z-index: 4000;
+}
+
+/* ☀️ LIGHT MODE */
+
+body.light-theme .app-footer {
+  background: #ffffff;
+  color: #111827;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* ================= SECTIONS ================= */
+
+.footer-left {
+  width: 120px; /* balance spacing */
+}
+
+.footer-text {
+  text-align: center;
+  flex: 1;
+  font-size: 13px;
+}
+
+.footer-text strong {
+  color: #8b5cf6;
+}
+
+/* TIME */
+
+.footer-time {
+  font-size: 12px;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+/* ☀️ LIGHT */
+
+body.light-theme .footer-time {
+  color: #6b7280;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  .app-footer {
+    flex-direction: column;
+    height: auto;
+    padding: 8px;
+    gap: 4px;
+  }
+
+  .footer-left {
+    display: none;
+  }
+
+  .footer-text {
+    font-size: 12px;
+  }
+
+  .footer-time {
+    font-size: 11px;
+  }
+}

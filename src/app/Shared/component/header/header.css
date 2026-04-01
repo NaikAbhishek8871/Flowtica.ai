@@ -1,0 +1,210 @@
+/* ================= HEADER ================= */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+
+  background: rgba(2, 6, 23, 0.9); /* MATCH SIDEBAR */
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 20px;
+  color: #fff;
+
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  z-index: 5000;
+}
+
+/* ☀️ LIGHT MODE */
+body.light-theme .header {
+  background: #ffffff;
+  color: #111;
+  border-bottom: 1px solid #eee;
+}
+
+/* ================= LEFT ================= */
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ✨ Gradient Brand */
+.brand-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: linear-gradient(90deg,#8b5cf6,#ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================= TOGGLE ================= */
+
+.toggle-btn {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit; /* ✅ FIX */
+}
+
+/* ================= RIGHT ================= */
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ================= THEME BUTTON ================= */
+
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #ffffff;
+}
+
+.theme-toggle:hover {
+  background: rgba(139,92,246,0.2);
+  box-shadow: 0 0 10px rgba(139,92,246,0.5);
+}
+
+/* ☀️ LIGHT MODE */
+body.light-theme .theme-toggle {
+  background: #f3f4f6;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+}
+
+/* ================= AVATAR ================= */
+
+.header .avatar {
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+  background: linear-gradient(135deg,#8b5cf6,#ec4899);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.header .avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(139,92,246,0.6);
+}
+
+/* ================= DROPDOWN ================= */
+
+/* FIX DROPDOWN LAYER ISSUE */
+.user-menu {
+  position: relative;
+  z-index: 6000; /* higher than grid */
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+
+  z-index: 9999 !important; /* 🔥 KEY FIX */
+
+  min-width: 240px;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+
+
+/* USER INFO */
+.dropdown-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+
+
+.dropdown-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dropdown-email {
+  font-size: 12px;
+}
+
+/* ITEMS */
+.user-dropdown .dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+/* DANGER */
+.text-danger {
+  color: #ef4444;
+}
+
+/* DIVIDER */
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 6px 0;
+}
+
+
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,84 @@
+<header class="header">
+
+  <!-- LEFT -->
+  <div class="left-section">
+
+    <a routerLink="/app/dashboard" class="brand">
+      <span class="bi bi-robot fs-4 me-2"></span>
+      <span class="brand-text">Flotica.AI</span>
+    </a>
+
+    <button class="toggle-btn" (click)="onToggle()">
+      ☰
+    </button>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right-section">
+
+    <!-- 🌗 THEME TOGGLE -->
+    <button class="theme-toggle" (click)="toggleTheme()">
+      <i class="bi" [ngClass]="isDarkMode ? 'bi-sun' : 'bi-moon'"></i>
+    </button>
+
+    <div class="user-menu">
+
+      <!-- 👤 AVATAR -->
+      <div class="avatar" (click)="toggleUserMenu()">
+
+        <img *ngIf="user?.avatar; else initialAvatar"
+             [src]="user.avatar"
+             alt="avatar" />
+
+        <ng-template #initialAvatar>
+          {{ user.name.charAt(0) || 'U' }}
+        </ng-template>
+
+      </div>
+
+      <!-- 🔽 DROPDOWN -->
+      <div class="user-dropdown" *ngIf="showUserMenu">
+
+        <div class="dropdown-user-info">
+          <div class="dropdown-avatar">
+            <img *ngIf="user?.avatar; else initialAvatarDropdown"
+                 [src]="user.avatar"
+                 alt="avatar" />
+            <ng-template #initialAvatarDropdown>
+              {{ user.name.charAt(0) || 'U' }}
+            </ng-template>
+          </div>
+          <div class="dropdown-text">
+            <div class="dropdown-name">{{ user.name }}</div>
+            <div class="dropdown-email">{{ user.email }}</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <a routerLink="/app/account-info" class="dropdown-item">
+          <i class="bi bi-person me-2"></i> My Profile
+        </a>
+
+        <a routerLink="/app/bio-page" class="dropdown-item">
+          <i class="bi bi-file-earmark-person me-2"></i> Bio Page
+        </a>
+
+        <a routerLink="/app/setting" class="dropdown-item">
+          <i class="bi bi-gear me-2"></i> Settings
+        </a>
+
+        <div class="divider"></div>
+
+        <a (click)="onLogout()" class="dropdown-item text-danger">
+          <i class="bi bi-box-arrow-right me-2"></i> Logout
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>

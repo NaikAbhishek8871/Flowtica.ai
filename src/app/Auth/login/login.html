@@ -1,0 +1,137 @@
+ <div class="login-page-wrapper" >
+  <div class="container-fluid">
+    <div class="row align-items-center min-vh-100">
+
+      <!-- Left Side: Form -->
+      <div class="col-lg-6 col-md-7 d-flex flex-column justify-content-center align-items-center p-4 p-md-5">
+        <div class="login-form-content w-100" style="max-width: 450px;">
+
+          <div class="text-center mb-4 animate-fade-in-down">
+            <h2 class="brand-title">
+              <i class="bi bi-robot me-2"></i> Flowtica.AI
+            </h2>
+            <h5 class="welcome-subtitle text-muted">Welcome Back!</h5>
+            <p class="mb-0">Sign in to continue.</p>
+          </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="loginUser()" class="animate-fade-in-up">
+
+            <!-- Login ID / Email -->
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="userLoginIdOremail"
+                placeholder="Login ID / Email"
+                formControlName="userLoginIdOremail"
+                [class.is-invalid]="loginForm.get('userLoginIdOremail')?.touched && loginForm.get('userLoginIdOremail')?.invalid"
+              />
+
+              <label for="userLoginIdOremail">
+                <i class="bi bi-person me-2"></i>Login ID / Email
+              </label>
+
+              <div class="invalid-feedback"
+              *ngIf="loginForm.get('userLoginIdOremail')?.touched && loginForm.get('userLoginIdOremail')?.invalid">
+                Login ID or Email is required.
+              </div>
+            </div>
+
+
+            <!-- Password -->
+            <div class="form-floating mb-3">
+
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                id="userLoginPassword"
+                placeholder="Password"
+                formControlName="userLoginPassword"
+                [class.is-invalid]="loginForm.get('userLoginPassword')?.touched && loginForm.get('userLoginPassword')?.invalid"
+              />
+
+              <label for="userLoginPassword">
+                <i class="bi bi-lock me-2"></i>Password
+              </label>
+
+              <span class="password-toggle-icon" (click)="togglePassword()">
+                <i class="bi" [ngClass]="showPassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
+              </span>
+
+              <div class="invalid-feedback"
+              *ngIf="loginForm.get('userLoginPassword')?.touched && loginForm.get('userLoginPassword')?.invalid">
+                Password must be at least 8 characters.
+              </div>
+
+            </div>
+
+
+            <!-- Forgot Password -->
+            <div class="text-end mb-3">
+              <a routerLink="/forgotpassword" class="text-decoration-none forgot-link">
+                Forgot Password?
+              </a>
+            </div>
+
+
+             <div *ngIf="errorMessage" class="error-message">
+  {{errorMessage}}
+</div>
+            <!-- Login Button -->
+            <button
+              type="submit"
+              class="btn btn-primary w-100 btn-lg login-btn"
+              [disabled]="loginForm.invalid || isLoading"
+            >
+
+              <span *ngIf="!isLoading">SIGN IN</span>
+
+              <span *ngIf="isLoading">
+                <span class="spinner-border spinner-border-sm"></span>
+                Logging in...
+              </span>
+
+            </button>
+
+          </form>
+
+
+          <!-- Register Link -->
+          <p class="text-center mt-4 register-link">
+            Don't have an account?
+            <a routerLink="/register" class="fw-bold text-decoration-none">
+              Sign Up
+            </a>
+          </p>
+
+        </div>
+      </div>
+
+
+      <!-- Right Side: Info Panel -->
+      <div class="col-lg-6 col-md-5 d-none d-md-flex flex-column justify-content-center info-panel">
+
+        <div class="info-panel-content text-white">
+
+          <h2 class="display-4 fw-bold">
+            Intelligent Automation at Your Fingertips
+          </h2>
+
+          <p class="lead mt-3">
+            Flotica.AI provides powerful automation tools and intelligent
+            analytics that help organizations streamline workflows and
+            improve productivity.
+          </p>
+
+          <p class="mt-4">
+            With AI-driven insights and automation capabilities,
+            Flotica enables businesses to make faster and smarter decisions.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="container-xl py-5 px-4 px-md-5">
+  <h2 class="fw-bolder mb-4 text-dark">Integrations</h2>
+  <div class="card border-0 modern-shadow p-2" style="max-width: 600px; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+    <div class="card-body p-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+      <div class="mb-3 mb-md-0">
+        <h5 class="fw-bold mb-2"><span class="fs-4 me-2">📸</span> Instagram Connection</h5>
+        <p class="text-muted mb-0 small" *ngIf="!isInstagramConnected">Link your Instagram account to sync posts and analytics.</p>
+        <p class="text-success mb-0 small fw-medium" *ngIf="isInstagramConnected">✅ Your account is successfully linked and active.</p>
+      </div>
+      <div>
+        <button class="btn px-4 py-2 fw-semibold" [ngClass]="isInstagramConnected ? 'btn-outline-danger' : 'btn-dark shadow-sm'" (click)="connectInstagram()">
+          {{ isInstagramConnected ? 'Disconnect' : 'Connect Instagram' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

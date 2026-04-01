@@ -1,0 +1,93 @@
+<aside class="sidebar"
+       [class.closed]="!isOpen"
+       [ngClass]="sidebarMode">
+
+  <ul>
+
+    <li>
+      <a routerLink="/app/dashboard"
+         routerLinkActive="active"
+         (click)="onMenuItemClick()"
+         [routerLinkActiveOptions]="{ exact: true }">
+        <i class="bi bi-house-door icon"></i>
+        <span class="text">Dashboard</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/app/Automation"
+         routerLinkActive="active"
+         (click)="onMenuItemClick()">
+        <i class="bi bi-lightning-charge icon"></i>
+        <span class="text">Automations</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/app/leads"
+         routerLinkActive="active"
+         (click)="onMenuItemClick()">
+        <i class="bi bi-people icon"></i>
+        <span class="text">Leads (CRM)</span>
+      </a>
+    </li>
+
+    <!-- <li>
+      <a routerLink="/app/products"
+         routerLinkActive="active"
+         (click)="onMenuItemClick()">
+        <i class="bi bi-cash-stack icon"></i>
+        <span class="text">Products</span>
+      </a>
+    </li> -->
+
+    <li>
+      <a routerLink="/app/analytics"
+         routerLinkActive="active"
+         (click)="onMenuItemClick()">
+        <i class="bi bi-bar-chart icon"></i>
+        <span class="text">Analytics</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/app/setting"
+         routerLinkActive="active"
+         (click)="onMenuItemClick()">
+        <i class="bi bi-gear icon"></i>
+        <span class="text">Settings</span>
+      </a>
+    </li>
+
+  </ul>
+
+  <!-- 🔻 BOTTOM -->
+  <div class="sidebar-bottom">
+
+    <div class="plan-minimal">
+      <span class="plan-dot" [ngClass]="plan.toLowerCase()"></span>
+      <span class="plan-text" [ngClass]="plan.toLowerCase()">
+        {{ plan }} Plan
+      </span>
+    </div>
+
+    <div class="user-minimal">
+   <div class="avatar-img">
+  <img *ngIf="user?.avatar; else initialAvatarSidebar"
+       [src]="user.avatar"
+       alt="avatar" />
+
+  <ng-template #initialAvatarSidebar>
+    {{ user.name.charAt(0) || 'U' }}
+  </ng-template>
+</div>
+
+      <div class="user-info">
+        <div class="user-name">{{ user.name }}</div>
+        <div class="user-id">{{ user.email }}</div>
+      </div>
+    </div>
+
+  </div>
+
+</aside>

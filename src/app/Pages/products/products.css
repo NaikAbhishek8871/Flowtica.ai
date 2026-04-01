@@ -1,0 +1,9 @@
+ 
+input::placeholder {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+input.form-control {
+  border-radius: 8px;
+}

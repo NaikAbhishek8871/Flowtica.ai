@@ -1,0 +1,121 @@
+<div class="login-page-wrapper">
+  <div class="container-fluid">
+    <div class="row align-items-center min-vh-100">
+      <!-- Left Side: Form -->
+      <div class="col-lg-6 col-md-7 d-flex flex-column justify-content-center align-items-center p-4 p-md-5">
+        <div class="login-form-content w-100" style="max-width: 450px;">
+          <div class="text-center mb-4 animate-fade-in-down">
+            <h2 class="brand-title">
+              <i class="bi bi-robot me-2"></i> Flotica.AI
+            </h2>
+            <h5 class="welcome-subtitle text-muted">Create Account</h5>
+            <p class="mb-0">Join us to access the intelligent dashboard.</p>
+          </div>
+
+          <form [formGroup]="registerForm" (ngSubmit)="registerUser()" class="animate-fade-in-up">
+            <!-- Name -->
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="userName"
+                placeholder="Full Name"
+                formControlName="userName"
+                [class.is-invalid]="registerForm.get('userName')?.touched && registerForm.get('userName')?.invalid"
+              />
+              <label for="userName"><i class="bi bi-person me-2"></i>Full Name</label>
+              <div class="invalid-feedback" *ngIf="registerForm.get('userName')?.touched && registerForm.get('userName')?.invalid">
+                Name is required.
+              </div>
+            </div>
+
+            <!-- Login ID -->
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="userLoginId"
+                placeholder="Login ID"
+                formControlName="userLoginId"
+                [class.is-invalid]="registerForm.get('userLoginId')?.touched && registerForm.get('userLoginId')?.invalid"
+              />
+              <label for="userLoginId"><i class="bi bi-person-badge me-2"></i>Login ID</label>
+              <div class="invalid-feedback" *ngIf="registerForm.get('userLoginId')?.touched && registerForm.get('userLoginId')?.invalid">
+                Login ID is required.
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Email"
+                formControlName="email"
+                [class.is-invalid]="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
+              />
+              <label for="email"><i class="bi bi-envelope me-2"></i>Email</label>
+              <div class="invalid-feedback" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+                Valid email is required.
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-floating mb-3">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                id="userLoginPassword"
+                placeholder="Password"
+                formControlName="userLoginPassword"
+                [class.is-invalid]="registerForm.get('userLoginPassword')?.errors?.['minlength']"
+              />
+              <label for="userLoginPassword"><i class="bi bi-lock me-2"></i>Password</label>
+              <span class="password-toggle-icon" (click)="togglePassword()">
+                <i class="bi" [ngClass]="showPassword ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
+              </span>
+              <div class="invalid-feedback" *ngIf="registerForm.get('userLoginPassword')?.errors?.['minlength']">
+                Password must be at least 8 characters.
+              </div>
+            </div>
+
+            <!-- Register Button -->
+            <button
+              type="submit"
+              class="btn btn-primary w-100 btn-lg login-btn"
+              [disabled]="registerForm.invalid || isLoading"
+            >
+              <span *ngIf="!isLoading">CREATE ACCOUNT</span>
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span *ngIf="isLoading"> Registering...</span>
+            </button>
+          </form>
+
+          <!-- Login Link -->
+          <p class="text-center mt-4 register-link">
+            Already have an account?
+            <a routerLink="/login" class="fw-bold text-decoration-none">Sign In</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Side: Info Panel -->
+      <div class="col-lg-6 col-md-5 d-none d-md-flex flex-column justify-content-center info-panel">
+        <div class="info-panel-content text-white">
+          <h2 class="display-4 fw-bold">Flotica.AI</h2>
+          <p class="lead mt-3">
+            Flotica.AI is an advanced AI-driven platform designed to help
+            businesses automate workflows, gain intelligent insights,
+            and optimize operational efficiency.
+          </p>
+          <p class="mt-4">
+            With cutting-edge artificial intelligence and predictive analytics,
+            Flotica.AI empowers organizations to make smarter decisions
+            and accelerate digital transformation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

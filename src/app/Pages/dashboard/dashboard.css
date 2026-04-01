@@ -1,0 +1,173 @@
+ /* ================= DASHBOARD ================= */
+
+.dashboard {
+  color: #e5e7eb;
+}
+
+/* ☀️ LIGHT MODE (SCOPED) */
+body.light-theme .app-layout .dashboard {
+  color: #111827;
+}
+
+/* ================= TEXT ================= */
+
+.title {
+  color: #fff;
+}
+
+.subtitle {
+  color: #9ca3af;
+}
+
+/* SCOPED */
+body.light-theme .app-layout .title {
+  color: #111;
+}
+
+body.light-theme .app-layout .subtitle {
+  color: #6b7280;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn-soft {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #e5e7eb;
+  border-radius: 10px;
+  padding: 8px 14px;
+}
+
+.btn-soft:hover {
+  background: rgba(139,92,246,0.15);
+}
+
+/* LIGHT (SCOPED) */
+body.light-theme .app-layout .btn-soft {
+  background: #fff;
+  border: 1px solid #eee;
+  color: #374151;
+}
+
+/* ================= CHART ================= */
+
+#leadChart {
+  max-height: 272px;
+}
+
+/* ================= GLOW BUTTON ================= */
+
+.btn-glow {
+  background: linear-gradient(90deg,#8b5cf6,#ec4899);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+
+  box-shadow: 0 0 15px rgba(139,92,246,0.5);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 25px rgba(139,92,246,0.8);
+}
+
+/* ================= CARDS ================= */
+
+.card-dark {
+  background: linear-gradient(145deg, #0f172a, #020617);
+  border-radius: 16px;
+  padding: 20px;
+
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* LIGHT (SCOPED) */
+body.light-theme .app-layout .card-dark {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+/* ================= LABEL ================= */
+
+.card-label {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 5px;
+}
+
+/* ================= GLOW COLORS ================= */
+
+.card-purple {
+  box-shadow: 0 0 20px rgba(139,92,246,0.3);
+}
+
+.card-blue {
+  box-shadow: 0 0 20px rgba(59,130,246,0.3);
+}
+
+.card-yellow {
+  box-shadow: 0 0 20px rgba(234,179,8,0.3);
+}
+
+.card-green {
+  box-shadow: 0 0 20px rgba(34,197,94,0.3);
+}
+
+/* ================= FILTER ================= */
+
+.filter {
+  background: rgba(255,255,255,0.05);
+  border: none;
+  color: #1d1b1b;
+}
+
+/* SCOPED */
+body.light-theme .app-layout .filter {
+  background: #f3f4f6;
+  color: #111;
+}
+
+/* ================= ACTIVITY ================= */
+
+.activity-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.activity-item .dot {
+  width: 8px;
+  height: 8px;
+  background: #8b5cf6;
+  border-radius: 50%;
+  margin-top: 6px;
+}
+
+.activity-item .text {
+  font-size: 14px;
+}
+
+.activity-item small {
+  color: #9ca3af;
+}
+
+/* ================= EMPTY STATE ================= */
+
+.empty-state {
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.empty-state p {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.empty-state small {
+  font-size: 13px;
+}

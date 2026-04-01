@@ -1,0 +1,331 @@
+/* 🔧 Control Layout */
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-group label {
+  font-size: 15px;
+  font-weight: 600;
+ 
+  white-space: nowrap;
+}
+
+/* 🧱 Desktop sizing */
+.control-group .form-control {
+  width: 220px;
+}
+
+.control-group .form-select {
+  width: 180px;
+}
+
+/* 📱 MOBILE FIX (IMPORTANT) */
+@media (max-width: 768px) {
+
+  .header-controls {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100%;
+  }
+
+  .control-group {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .control-group label {
+    margin-bottom: 4px;
+  }
+
+  .form-control,
+  .form-select,
+  .export-btn {
+    width: 100% !important;
+  }
+
+  /* ✅ Fix dropdown overflow */
+  .form-select {
+    max-width: 100%;
+  }
+}
+.ag-grid-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+/* 🌫 Overlay */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+/* 👉 SIDE PANEL */
+.drawer-side {
+  position: fixed;
+  top: 45px;
+  right: 0;
+  height: 100%;
+  width: 420px;
+  max-width: 95%;
+  background: #fff;
+  box-shadow: -10px 0 40px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+
+  /* 🎬 Slide animation */
+  transform: translateX(100%);
+  animation: slideIn 0.3s forwards ease;
+}
+
+/* 🎬 Animation */
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+  }
+}
+/* 🧾 Header */
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid #eee;
+  font-weight: 600;
+}
+
+/* 📦 Body */
+.drawer-body {
+  padding: 20px;
+}
+
+/* 🏷 Tags */
+.drawer-center .badge {
+  border-radius: 20px;
+  padding: 6px 10px;
+}
+
+/* 🔘 Buttons */
+.drawer-center .btn {
+  border-radius: 10px;
+}
+
+/* 📱 Mobile Responsiveness */
+.export-btn {
+  font-size: 14px;
+  width: 200px;
+}
+
+/* 🎯 Placeholder Style */
+.form-control::placeholder {
+  font-size: 15px;   /* increase size */
+  color: #9ca3af;    /* optional softer color */
+  font-weight: 500;  /* optional */
+}
+
+.view-btn {
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border: none;
+  color: white;
+}
+
+.view-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* 🔘 Close Button Top Corner */
+.custom-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.custom-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+body:not(.light-theme) .custom-close {
+  filter: invert(1);
+}
+
+
+@media (max-width: 768px) {
+  .header-actions {
+    width: 100% !important;
+  }
+  
+  .header-actions .form-control,
+  .header-actions .form-select,
+  .export-btn {
+    width: 100% !important;
+  }
+
+  .ag-theme-quartz .ag-cell {
+    padding: 10px;
+  }
+  
+  .ag-theme-quartz .ag-header-cell {
+    font-size: 12px;
+  }
+
+  .ag-theme-quartz .ag-row {
+    font-size: 12px;
+  }
+}
+/* ===================================================== */
+/* 🌑 LEADS DARK MODE (MATCH GLOBAL THEME) */
+/* ===================================================== */
+
+body:not(.light-theme) .app-layout .container-fluid {
+  background: transparent; /* ✨ REMOVE background */
+  color: #e5e7eb;
+}
+
+/* HEADER TEXT */
+body:not(.light-theme) h3 {
+  color: #ffffff !important;
+}
+
+body:not(.light-theme) small {
+  color: #94a3b8 !important;
+}
+
+/* ================= INPUT + SELECT ================= */
+
+body:not(.light-theme) .form-control,
+body:not(.light-theme) .form-select {
+  background: #020617;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #e5e7eb;
+  border-radius: 10px;
+}
+
+body:not(.light-theme) .form-control::placeholder {
+  color: #64748b;
+}
+
+/* FOCUS */
+body:not(.light-theme) .form-control:focus,
+body:not(.light-theme) .form-select:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 2px rgba(139,92,246,0.2);
+}
+
+/* ================= BUTTON ================= */
+
+body:not(.light-theme) .export-btn {
+  background: linear-gradient(90deg,#22c55e,#16a34a);
+  border: none;
+  font-weight: 600;
+}
+
+/* ================= AG GRID ================= */
+
+body:not(.light-theme) .ag-theme-quartz {
+  background: #020617;
+  color: #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* HEADER */
+body:not(.light-theme) .ag-theme-quartz .ag-header {
+  background: linear-gradient(90deg,#6366f1,#8b5cf6);
+}
+
+/* ROWS */
+body:not(.light-theme) .ag-row {
+  background: #020617;
+  color: #e5e7eb;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+/* ZEBRA */
+body:not(.light-theme) .ag-row:nth-child(even) {
+  background: #0b1220;
+}
+
+/* HOVER */
+body:not(.light-theme) .ag-row:hover {
+  background: rgba(139,92,246,0.12);
+  transform: scale(1.01);
+}
+
+/* 🚨 REMOVE WHITE STRIP */
+body:not(.light-theme) .ag-root-wrapper,
+body:not(.light-theme) .ag-body-viewport,
+body:not(.light-theme) .ag-center-cols-viewport,
+body:not(.light-theme) .ag-body-horizontal-scroll,
+body:not(.light-theme) .ag-body-vertical-scroll {
+  background: #020617 !important;
+}
+
+/* ================= DRAWER ================= */
+
+/* DARK MODE SIDE PANEL */
+body:not(.light-theme) .drawer-side {
+  background: rgba(15,23,42,0.9);
+  backdrop-filter: blur(12px);
+  color: #e5e7eb;
+  border-left: 1px solid rgba(255,255,255,0.05);
+}
+
+body:not(.light-theme) .drawer-header {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+/* TEXT */
+body:not(.light-theme) .drawer-body p {
+  color: #cbd5f5;
+}
+
+/* INPUT */
+body:not(.light-theme) .drawer-body input,
+body:not(.light-theme) .drawer-body textarea {
+  background: #020617;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #e5e7eb;
+}
+
+/* BUTTONS */
+body:not(.light-theme) .drawer-body .btn-primary {
+  background: linear-gradient(90deg,#8b5cf6,#ec4899);
+  border: none;
+}
+
+body:not(.light-theme) .drawer-body .btn-dark {
+  background: #1f2937;
+  border: none;
+}
+
+/* BADGES */
+body:not(.light-theme) .badge {
+  background: rgba(139,92,246,0.15);
+  color: #c4b5fd;
+}
+
+.ag-theme-quartz .ag-paging-panel {
+  border-top: 1px solid rgba(0,0,0,0.05);
+  padding: 10px;
+  font-size: 13px;
+}
+
+/* DARK MODE */
+body:not(.light-theme) .ag-paging-panel {
+  background: #020617;
+  color: #e5e7eb;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
